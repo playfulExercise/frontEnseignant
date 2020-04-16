@@ -5,6 +5,9 @@ class loginPage extends Component {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full">
+          <h1 className="mt-6 text-center text-6xl leading-11 font-extrabold text-indigo-400">
+            Exercices ludiques
+          </h1>
           <div>
             <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
               Se connecter
@@ -38,7 +41,7 @@ class loginPage extends Component {
             <div className="mt-6 flex items-center justify-between">
               <div className="text-sm leading-5">
                 <a
-                  href="#"
+                  href="/"
                   className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
                 >
                   Mot de passe oublie ?
