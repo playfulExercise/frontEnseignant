@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class loginPage extends Component {
   render() {
     return (
       <form className="mt-8" action="#" method="POST">
+        <div>
+          <h2 className="mt-6 mb-5 text-center text-3xl leading-9 font-extrabold text-gray-900">
+            Se connecter
+          </h2>
+        </div>
         <input type="hidden" name="remember" value="true" />
         <div className="rounded-md shadow-sm">
           <div>
@@ -40,9 +46,9 @@ class loginPage extends Component {
         </div>
 
         <div className="mt-6">
-          <button
-            type="submit"
+          <Link
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
+            to="/"
           >
             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
               <svg
@@ -58,7 +64,7 @@ class loginPage extends Component {
               </svg>
             </span>
             Se connecter
-          </button>
+          </Link>
         </div>
       </form>
     );

@@ -45,7 +45,7 @@ class Header extends Component {
               size="3x"
               color="#cbd5e0"
               // className="w-8 p-2 bg-gray-800 rounded-full"
-            />{" "}
+            />
             <span className="absolute right-0 top-0 -mt-1 -mr-1 text-xs bg-yellow-500 text-black font-medium px-2 rounded-full">
               3
             </span>
