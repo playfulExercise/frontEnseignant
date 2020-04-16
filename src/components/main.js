@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PagePrincipale from "./connect/pagePrincipale";
 import Dashboard from "./dashboard/dashboard";
-import Navbar from "./dashboard/navbar";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
