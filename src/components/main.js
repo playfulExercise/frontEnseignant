@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-// import Header from "./header";
-// import LoginPage from "./loginPage";
-import ChoiceUser from "./choiceUser";
+import PagePrincipale from "./pagePrincipale";
 
 class Main extends Component {
   render() {
-    return <ChoiceUser />;
+    return <PagePrincipale />;
   }
 }
 
