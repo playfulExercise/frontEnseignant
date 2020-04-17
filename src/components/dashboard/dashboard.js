@@ -9,7 +9,7 @@ import React, { Component } from "react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./header";
 import Title from "./title";
-import Content from "./content";
+import Content from "./contentPage";
 
 class Dashboard extends Component {
   render() {
