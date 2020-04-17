@@ -1,8 +1,47 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../networkLink";
 
 class loginPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email_prof: "",
+      password: "",
+      errors: {},
+      error: "",
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+
+    const user = {
+      emailArtisan: this.state.emailArtisan.toLowerCase(),
+      password: this.state.password,
+    };
+
+    login(user).then((res) => {
+      if ((res || {}).error) {
+        (localStorage || {}).removeItem("usertoken");
+        this.props.history.push(`/c/login`);
+        this.setState({ error: res.error });
+      } else {
+        this.props.history.push(`/c/profile`);
+        window.location.reload();
+      }
+    });
+  }
+
   render() {
+    const { error } = this.state;
+
     return (
       <form className="mt-8" action="#" method="POST">
         <div>
@@ -15,7 +54,7 @@ class loginPage extends Component {
           <div>
             <input
               aria-label="Adresse mail"
-              name="email"
+              name="email_prof"
               type="email"
               required
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
@@ -64,6 +103,9 @@ class loginPage extends Component {
               </svg>
             </span>
             Se connecter
+            {error && (
+              <p className="text-red-600">L'utilisateur n'a pas été trouvé</p>
+            )}
           </Link>
         </div>
       </form>

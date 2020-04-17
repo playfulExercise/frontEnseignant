@@ -17,6 +17,21 @@ export const register = (newProf) => {
     });
 };
 
+export const login = (professeur) => {
+  return axios
+    .post("professeurs/login", {
+      email_prof: professeur.email_prof,
+      password: professeur.password,
+    })
+    .then((response) => {
+      localStorage.setItem("usertoken", response.data);
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 /*export const addCreation = (newCreation) => {
   return axios
     .post("users/creationsList", {
@@ -118,21 +133,6 @@ export const delCreation = (user) => {
       userId: user.userId,
     })
     .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-export const login = (user) => {
-  return axios
-    .post("users/login", {
-      emailArtisan: user.emailArtisan,
-      password: user.password,
-    })
-    .then((response) => {
-      localStorage.setItem("usertoken", response.data);
       return response.data;
     })
     .catch((err) => {
