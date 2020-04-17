@@ -25,6 +25,7 @@
     "prebuild": "yarn build:styles",
     "prestart": "yarn build:styles"
   },
+  "proxy": "http://localhost:4000",
   "eslintConfig": {
     "extends": "react-app"
   },

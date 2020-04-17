@@ -10,7 +10,7 @@ class Main extends Component {
       <Router>
         <Switch>
           <Route path="/">
-            <Dashboard />
+            <PagePrincipale />
           </Route>
           <Route path="/dashboard"></Route>
         </Switch>

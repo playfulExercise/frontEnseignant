@@ -1,7 +1,50 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import Button from "../UI/Button";
+
+import { register } from "../networkLink";
 
 class RegisterPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      prenom_prof: "",
+      nom_prof: "",
+      email_prof: "",
+      password: "",
+      departement: "",
+      etablissement: "",
+      eleves: [],
+      errors: {},
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newProfesseur = {
+      prenom_prof: this.state.prenom_prof,
+      nom_prof: this.state.nom_prof,
+      email_prof: this.state.email_prof.toLowerCase(),
+      password: this.state.password,
+      departement: this.state.sloganArtisan,
+      etablissement: this.state.telephoneArtisan,
+      eleves: this.state.eleves,
+    };
+
+    register(newProfesseur).then((res) => {
+      this.props.history.push(`/login`);
+    });
+  }
+
   render() {
     return (
       <form className="mt-8" action="#" method="POST">
@@ -16,89 +59,96 @@ class RegisterPage extends Component {
               <div className="w-1/2 mr-1">
                 <label
                   className="block text-grey-darker text-sm font-bold mb-2"
-                  for="last_name"
+                  htmlFor="prenom_prof"
                 >
                   Prenom
                 </label>
                 <input
-                  aria-label="Adresse mail"
-                  name="name"
+                  aria-label="prenom_prof"
+                  name="prenom_prof"
                   type="text"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                   placeholder="Prenom"
+                  value={this.state.prenom_prof}
+                  onChange={this.onChange}
                 />
               </div>
               <div className="w-1/2 ml-1">
                 <label
                   className="block text-grey-darker text-sm font-bold mb-2"
-                  for="last_name"
+                  htmlFor="nom_prof"
                 >
                   Nom de famille
                 </label>
                 <input
-                  aria-label="Adresse mail"
-                  name="name"
+                  aria-label="nom_prof"
+                  name="nom_prof"
                   type="text"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                   placeholder="Nom"
+                  value={this.state.nom_prof}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
             <div className="mb-4">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
-                for="email"
+                htmlFor="etablissement"
               >
                 Nom de l'etablissement
               </label>
               <input
-                aria-label="Nom de l'etablissement"
+                aria-label="etablissement"
                 name="etablissement"
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="Nom de l'etablissement"
+                value={this.state.etablissement}
+                onChange={this.onChange}
               />
             </div>
             <div className="mb-4">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
-                for="email"
+                htmlFor="email"
               >
                 Adresse mail
               </label>
               <input
                 aria-label="Adresse mail"
-                name="email"
+                name="email_prof"
                 type="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="Adresse mail"
+                value={this.state.email_prof}
+                onChange={this.onChange}
               />
             </div>
             <div className="mb-4">
               <label
                 className="block text-grey-darker text-sm font-bold mb-2"
-                for="email"
+                htmlFor="password"
               >
                 Mot de passe
               </label>
               <input
-                aria-label="Password"
+                aria-label="password"
                 name="password"
                 type="password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="Mot de passe"
+                value={this.state.password}
+                onChange={this.onChange}
               />
             </div>
             <div className="flex items-center justify-between mt-8">
-              <Link
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
-                to="/"
-              >
+              <Button onClick={this.onSubmit}>
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <svg
                     className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150"
@@ -106,14 +156,14 @@ class RegisterPage extends Component {
                     viewBox="0 0 20 20"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 </span>
                 S'inscrire
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
