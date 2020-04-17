@@ -9,10 +9,15 @@ class Main extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/">
+          <Route path="/c/">
             <PagePrincipale />
           </Route>
-          <Route path="/dashboard"></Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/">
+            <Dashboard />
+          </Route>
         </Switch>
       </Router>
     );
