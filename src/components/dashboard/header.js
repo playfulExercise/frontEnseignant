@@ -20,25 +20,13 @@ function Header() {
                   href="/"
                   className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 >
-                  Team
+                  Eleves
                 </a>
                 <a
                   href="/"
                   className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 >
-                  Projects
-                </a>
-                <a
-                  href="/"
-                  className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                >
-                  Calendar
-                </a>
-                <a
-                  href="/"
-                  className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                >
-                  Reports
+                  Monde
                 </a>
               </div>
             </div>
@@ -71,7 +59,6 @@ function Header() {
                     aria-label="User menu"
                     aria-haspopup="true"
                     onMouseEnter={() => setIsShown(true)}
-                    onMouseLeave={() => setIsShown(false)}
                   >
                     <img
                       className="h-8 w-8 rounded-full"
@@ -81,7 +68,11 @@ function Header() {
                   </button>
                 </div>
                 {isShown && (
-                  <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                  <div
+                    onMouseEnter={() => setIsShown(true)}
+                    onMouseLeave={() => setIsShown(false)}
+                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+                  >
                     <div
                       className="py-1 rounded-md bg-white shadow-xs"
                       role="menu"
@@ -93,21 +84,21 @@ function Header() {
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
-                        Your Profile
+                        Profile
                       </a>
                       <a
                         href="/"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
-                        Settings
+                        Reglages
                       </a>
                       <a
                         href="/"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
-                        Sign out
+                        Se deconnecter
                       </a>
                     </div>
                   </div>
@@ -159,25 +150,13 @@ function Header() {
             href="/"
             className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >
-            Team
+            Eleves
           </a>
           <a
             href="/"
             className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
           >
-            Projects
-          </a>
-          <a
-            href="/"
-            className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >
-            Calendar
-          </a>
-          <a
-            href="/"
-            className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >
-            Reports
+            Monde
           </a>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-700">
@@ -189,33 +168,25 @@ function Header() {
                 alt=""
               />
             </div>
-            <div className="ml-3">
-              <div className="text-base font-medium leading-none text-white">
-                Tom Cook
-              </div>
-              <div className="mt-1 text-sm font-medium leading-none text-gray-400">
-                tom@example.com
-              </div>
-            </div>
           </div>
           <div className="mt-3 px-2">
             <a
               href="/"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >
-              Your Profile
+              Profile
             </a>
             <a
               href="/"
               className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >
-              Settings
+              Reglages
             </a>
             <a
               href="/"
               className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >
-              Sign out
+              Se deconnecter
             </a>
           </div>
         </div>

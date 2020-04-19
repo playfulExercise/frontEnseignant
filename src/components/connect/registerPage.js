@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "../UI/Button";
 
 import { register } from "../networkLink";
+import { Redirect } from "react-router-dom";
 
 class RegisterPage extends Component {
   constructor() {
@@ -15,8 +16,8 @@ class RegisterPage extends Component {
       etablissement: "",
       eleves: [],
       errors: {},
+      redirectLogin: false,
     };
-
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -41,7 +42,12 @@ class RegisterPage extends Component {
     };
 
     register(newProfesseur).then((res) => {
-      this.props.history.push(`/login`);
+      if ((res || {}).error) {
+        (localStorage || {}).removeItem("usertoken");
+        this.setState({ error: res.error });
+      } else {
+        this.setState({ redirectLogin: true });
+      }
     });
   }
 
@@ -52,6 +58,7 @@ class RegisterPage extends Component {
           <h2 className="mt-6 mb-5 text-center text-3xl leading-9 font-extrabold text-gray-900">
             Creer un compte professeur
           </h2>
+          {this.state.redirectLogin && <Redirect to="/c/login" />}
         </div>
         <div className="font-sans antialiased bg-grey-lightest">
           <div className="py-4 px-8">
@@ -163,6 +170,7 @@ class RegisterPage extends Component {
                   </svg>
                 </span>
                 S'inscrire
+                {this.state.error}
               </Button>
             </div>
           </div>

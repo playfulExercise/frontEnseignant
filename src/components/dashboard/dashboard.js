@@ -16,7 +16,7 @@ class Dashboard extends Component {
     return (
       <div>
         <Header />
-        <Title title="Dashboard" />
+        <Title title="Profile" />
         <Content />
       </div>
     );

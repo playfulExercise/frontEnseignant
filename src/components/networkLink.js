@@ -32,6 +32,20 @@ export const login = (professeur) => {
     });
 };
 
+export const getProfile = (user) => {
+  return axios
+    .get("professeurs/profile", {
+      //headers: { Authorization: ` ${this.getToken()}` }
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 /*export const addCreation = (newCreation) => {
   return axios
     .post("users/creationsList", {
@@ -133,20 +147,6 @@ export const delCreation = (user) => {
       userId: user.userId,
     })
     .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-export const getProfile = (user) => {
-  return axios
-    .get("users/profile", {
-      //headers: { Authorization: ` ${this.getToken()}` }
-    })
-    .then((response) => {
-      console.log(response);
       return response.data;
     })
     .catch((err) => {
