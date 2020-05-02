@@ -2,13 +2,13 @@ import React, { Component } from "react";
 
 // import {
 //   faGraduationCap,
-//   faUserCircle,
-//   faTasks,
-//   faChartBar,
 // } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import Header from "./header";
 import Title from "./title";
+import TitleEleves from "./content/titleEleves";
+
 import Content from "./contentPage";
 
 import { Switch, Route } from "react-router-dom";
@@ -23,7 +23,7 @@ class Dashboard extends Component {
             <Content nomcontenu="dashboard" />
           </Route>
           <Route path="/eleves">
-            <Title title="Eleves" />
+            <TitleEleves />
             <Content nomcontenu="eleves" />
           </Route>
           <Route path="/monde">

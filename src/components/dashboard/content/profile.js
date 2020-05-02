@@ -25,9 +25,25 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <p>Nom : {this.state.nom_prof}</p>
-        <p>Prenom : {this.state.prenom_prof}</p>
-        <p>Adresse mail : {this.state.email_prof}</p>
+        <div>
+          <span className="text-1xl font-bold leading-tight text-gray-900">
+            Nom :
+          </span>
+          <span>{" " + this.state.nom_prof}</span>
+        </div>
+        <div>
+          <span className="text-1xl font-bold leading-tight text-gray-900">
+            Prenom :
+          </span>
+          <span>{" " + this.state.prenom_prof}</span>
+        </div>
+
+        <div>
+          <span className="text-1xl font-bold leading-tight text-gray-900">
+            Adresse :
+          </span>
+          <span>{" " + this.state.email_prof}</span>
+        </div>
       </div>
     );
   }

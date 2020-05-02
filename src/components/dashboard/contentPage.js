@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./content/profile";
+import Eleves from "./content/eleves";
+
 class Content extends Component {
   render() {
     const { nomcontenu } = this.props;
@@ -7,10 +9,9 @@ class Content extends Component {
       <main>
         <div className="max-w-7xl mx-auto py-2 sm:px-2 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-              {nomcontenu === "dashboard" && <Profile />}
-              {nomcontenu === "profile" && <Profile />}
-            </div>
+            {nomcontenu === "dashboard" && <Profile />}
+            {nomcontenu === "profile" && <Profile />}
+            {nomcontenu === "eleves" && <Eleves />}
           </div>
         </div>
       </main>
