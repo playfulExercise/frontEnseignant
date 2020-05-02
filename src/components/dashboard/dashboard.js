@@ -11,13 +11,30 @@ import Header from "./header";
 import Title from "./title";
 import Content from "./contentPage";
 
+import { Switch, Route } from "react-router-dom";
 class Dashboard extends Component {
   render() {
     return (
       <div>
         <Header />
-        <Title title="Profile" />
-        <Content />
+        <Switch>
+          <Route path="/dashboard">
+            <Title title="Tableau de bord" />
+            <Content nomcontenu="dashboard" />
+          </Route>
+          <Route path="/eleves">
+            <Title title="Eleves" />
+            <Content nomcontenu="eleves" />
+          </Route>
+          <Route path="/monde">
+            <Title title="Monde" />
+            <Content nomcontenu="monde" />
+          </Route>
+          <Route path="/profile">
+            <Title title="Monde" />
+            <Content nomcontenu="profile" />
+          </Route>
+        </Switch>
       </div>
     );
   }

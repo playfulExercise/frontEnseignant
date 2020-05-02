@@ -1,33 +1,43 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import Button from "../UI/Button";
 
 function Header() {
   const [isShown, setIsShown] = useState(false);
+  const [redirectDashboard, setRedirectDashboard] = useState("/dashboard");
+
   return (
     <nav className="bg-gray-800">
+      {redirectDashboard === "/dashboard" && <Redirect to="/dashboard" />}
+      {redirectDashboard === "/eleves" && <Redirect to="/eleves" />}
+      {redirectDashboard === "/monde" && <Redirect to="/monde" />}
+      {redirectDashboard === "/profile" && <Redirect to="/profile" />}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 text-white">Exercices ludiques</div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline">
-                <a
-                  href="/"
+                <Button
+                  onClick={() => setRedirectDashboard("/dashboard")}
                   className="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
                 >
                   Dashboard
-                </a>
-                <a
+                </Button>
+                <Button
                   href="/"
+                  onClick={() => setRedirectDashboard("/eleves")}
                   className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 >
                   Eleves
-                </a>
-                <a
-                  href="/"
+                </Button>
+                <Button
+                  onClick={() => setRedirectDashboard("/monde")}
                   className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                 >
                   Monde
-                </a>
+                </Button>
               </div>
             </div>
           </div>
@@ -71,7 +81,7 @@ function Header() {
                   <div
                     onMouseEnter={() => setIsShown(true)}
                     onMouseLeave={() => setIsShown(false)}
-                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+                    className="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg"
                   >
                     <div
                       className="py-1 rounded-md bg-white shadow-xs"
@@ -79,27 +89,27 @@ function Header() {
                       aria-orientation="vertical"
                       aria-labelledby="user-menu"
                     >
-                      <a
-                        href="/"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      <Button
+                        onClick={() => setRedirectDashboard("/profile")}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-40 text-left"
                         role="menuitem"
                       >
                         Profile
-                      </a>
-                      <a
-                        href="/"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      </Button>
+                      <Button
+                        onClick={() => setRedirectDashboard("/reglages")}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-40 text-left"
                         role="menuitem"
                       >
                         Reglages
-                      </a>
-                      <a
-                        href="/"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      </Button>
+                      <Button
+                        onClick={() => setRedirectDashboard("/logout")}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-40 text-left"
                         role="menuitem"
                       >
                         Se deconnecter
-                      </a>
+                      </Button>
                     </div>
                   </div>
                 )}
