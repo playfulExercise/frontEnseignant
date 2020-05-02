@@ -111,10 +111,12 @@ class loginPage extends Component {
               </svg>
             </span>
             Se connecter
-            {error && (
-              <p className="text-red-600">L'utilisateur n'a pas été trouvé</p>
-            )}
           </Button>
+          {error && (
+            <b className="text-center text-red-600">
+              Les identifiants sont incorrects
+            </b>
+          )}
         </div>
       </form>
     );
