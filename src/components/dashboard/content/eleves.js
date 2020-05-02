@@ -1,34 +1,19 @@
-import React, { Component } from "react";
-import jwt_decode from "jwt-decode";
-
-class Eleves extends Component {
-  constructor() {
-    super();
-    this.state = {
-      prenom_prof: "",
-      nom_prof: "",
-      email_prof: "",
-      errors: {},
-    };
-  }
-
-  componentDidMount() {
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-    this.setState({
-      prenom_prof: decoded.prenom_prof,
-      nom_prof: decoded.nom_prof,
-      email_prof: decoded.email_prof,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <p>ELEVES</p>
-      </div>
-    );
-  }
-}
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import ElevesAddPages from "./elevesAddPages";
+const Eleves = () => {
+  return (
+    <div>
+      <Switch>
+        <Route path="/eleves/all">
+          <p>eleves page generale</p>
+        </Route>
+        <Route path="/eleves/add">
+          <ElevesAddPages />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
 export default Eleves;
