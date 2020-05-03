@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const register = (newProf) => {
   return axios
-    .post("professeurs/register", {
+    .post("/professeurs/register", {
       prenom_prof: newProf.prenom_prof,
       nom_prof: newProf.nom_prof,
       email_prof: newProf.email_prof,
@@ -19,7 +19,7 @@ export const register = (newProf) => {
 
 export const login = (professeur) => {
   return axios
-    .post("professeurs/login", {
+    .post("/professeurs/login", {
       email_prof: professeur.email_prof,
       password: professeur.password,
     })
@@ -34,7 +34,7 @@ export const login = (professeur) => {
 
 export const getProfile = (user) => {
   return axios
-    .get("professeurs/profile", {
+    .get("/professeurs/profile", {
       //headers: { Authorization: ` ${this.getToken()}` }
     })
     .then((response) => {
@@ -46,29 +46,14 @@ export const getProfile = (user) => {
     });
 };
 
-/*export const addCreation = (newCreation) => {
+export const addEleves = (newEleves) => {
   return axios
-    .post("users/creationsList", {
-      emailArtisan: newCreation.emailArtisan,
-      _id: newCreation._id,
+    .post("/professeurs/elevesList", {
+      _id: newEleves._id,
 
-      nomProduit: newCreation.nomProduit,
-      descriptionProduit: newCreation.descriptionProduit,
-      gainEnvironnement: newCreation.gainEnvironnement,
-      categorieProduit: newCreation.categorieProduit,
-      styleProduit: newCreation.styleProduit,
-      materiauProduit: newCreation.materiauProduit,
-      couleurProduit: newCreation.couleurProduit,
-      anneeConceptionProduit: newCreation.anneeConceptionProduit,
-      hauteurProduit: newCreation.hauteurProduit,
-      poidsProduit: newCreation.poidsProduit,
-      largeurProduit: newCreation.largeurProduit,
-      longueurProduit: newCreation.longueurProduit,
-      prixTTCProduit: newCreation.prixTTCProduit,
-      prixLivraisonProduit: newCreation.prixLivraisonProduit,
-      retraitAtelierProduit: newCreation.retraitAtelierProduit,
-      lieuFabricationProduit: newCreation.lieuFabricationProduit,
-      stock: newCreation.stock,
+      nom_eleve: newEleves.nom_eleve,
+      prenom_eleve: newEleves.prenom_eleve,
+      code_eleve: newEleves.code_eleve,
     })
     .then((response) => {
       console.log(response);
@@ -78,7 +63,7 @@ export const getProfile = (user) => {
       console.log(err);
     });
 };
-
+/*
 export const getCreation = (user) => {
   return axios
     .post("users/creations", {
