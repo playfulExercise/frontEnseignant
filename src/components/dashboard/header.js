@@ -5,6 +5,7 @@ import Button from "../UI/Button";
 function Header() {
   const [isShown, setIsShown] = useState(false);
   const [redirectDashboard, setRedirectDashboard] = useState("/dashboard");
+  const [isLogout, logout] = useState(false);
 
   return (
     <nav className="bg-gray-800">
@@ -12,6 +13,9 @@ function Header() {
       {redirectDashboard === "/eleves" && <Redirect to="/eleves" />}
       {redirectDashboard === "/monde" && <Redirect to="/monde" />}
       {redirectDashboard === "/profile" && <Redirect to="/profile" />}
+      {isLogout && (localStorage || {}).removeItem("usertoken")}
+      {isLogout && <Redirect to="/c/" />}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -115,7 +119,7 @@ function Header() {
                         Reglages
                       </Button>
                       <Button
-                        onClick={() => setRedirectDashboard("/logout")}
+                        onClick={() => logout(true)}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-40 text-left"
                         role="menuitem"
                       >

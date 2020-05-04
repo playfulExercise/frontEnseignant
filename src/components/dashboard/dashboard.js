@@ -31,7 +31,7 @@ class Dashboard extends Component {
             <Content nomcontenu="monde" />
           </Route>
           <Route path="/profile">
-            <Title title="Monde" />
+            <Title title="Profile" />
             <Content nomcontenu="profile" />
           </Route>
         </Switch>
