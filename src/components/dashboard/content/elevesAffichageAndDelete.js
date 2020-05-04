@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
+import { Redirect } from "react-router-dom";
 
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getEleves } from "../../networkLink";
+import { getEleves, delEleves } from "../../networkLink";
 import Button from "../../UI/Button";
 
 class ElevesAffichage extends Component {
@@ -13,6 +14,8 @@ class ElevesAffichage extends Component {
       eleves: [],
       errors: {},
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +23,7 @@ class ElevesAffichage extends Component {
     const decoded = token && jwt_decode(token);
     this.setState({
       decoded: decoded,
+      _id: (decoded || [])._id,
       eleves: (decoded || []).eleves,
     });
     const professeur = {
@@ -28,14 +32,43 @@ class ElevesAffichage extends Component {
     getEleves(professeur).then((res) => this.setState({ card: res }));
   }
 
+  onChange(e, eleveID) {
+    if (e.target.checked) {
+      this.setState({
+        listElevesDelete: {
+          ...this.state.listElevesDelete,
+          [e.target.value]: eleveID,
+        },
+      });
+    } else {
+      const elevesASupprimer = this.state.listElevesDelete;
+      delete elevesASupprimer[e.target.value];
+      this.setState({
+        listElevesDelete: {
+          ...elevesASupprimer,
+        },
+      });
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const professeurUpdate = {
+      _id: this.state._id,
+      listElevesDelete: this.state.listElevesDelete,
+    };
+    delEleves(professeurUpdate).then((res) => <Redirect to="/eleves/add" />);
+  }
+
   render() {
     const { card } = this.state;
 
     return (
       <div>
+        {console.log(this.state)}
         <div className="w-full flex items-center justify-center">
           <div className="w-1/2">
-            {(card || []).length &&
+            {(card || []).length ? (
               (card || []).map((eleves, i) => (
                 <div
                   key={i}
@@ -54,7 +87,7 @@ class ElevesAffichage extends Component {
                         {eleves.nom_eleve || " "} {eleves.prenom_eleve || " "}
                       </span>
                       <p className="text-xs text-grey-dark">
-                        {eleves.code_eleve || "Desc"}
+                        {eleves.code_eleve || "unable to fetch code"}
                       </p>
                     </div>
                   </div>
@@ -64,21 +97,22 @@ class ElevesAffichage extends Component {
                       type="checkbox"
                       className="form-checkbox text-md no-underline text-black hover:text-blue-dark ml-2 px-1 bg-gray-700"
                       name={i}
-                      // onChange={(e) => this.onChange(e, creation.nomProduit)}
-                      onChange={() => console.log(eleves._id)}
+                      onChange={(e) => this.onChange(e, eleves._id)}
                       value={eleves._id}
-                      // checked={
-                      //   (this.state.listeCreationsIncluses || {})[creation._id]
-                      // }
                     />
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className="w-full flex items-center justify-center mb-5 text-2xl">
+                Vous n'avez pas encore ajoute d'eleves
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full flex items-center justify-center">
           <Button
-            // onClick={() => setRedirectSubpageEleves("/eleves/all")}
+            onClick={this.onSubmit}
             additionalClass="ml-5 mr-5"
             typeButton
             setW="w-1/4"

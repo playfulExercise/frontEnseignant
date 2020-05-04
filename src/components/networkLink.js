@@ -69,13 +69,25 @@ export const addEleves = (newEleves) => {
       code_eleve: newEleves.code_eleve,
     })
     .then((response) => {
-      console.log(response);
       return response.data;
     })
     .catch((err) => {
       console.log(err);
     });
 };
+
+export const delEleves = (user) => {
+  console.log(user);
+  return axios
+    .post("/professeurs/eleves/delete", {
+      _id: user._id,
+      listElevesDelete: user.listElevesDelete,
+    })
+    .then((response) => {
+      console.log("Eleve(s) deleted");
+    });
+};
+
 /*
 export const getCreation = (user) => {
   return axios
