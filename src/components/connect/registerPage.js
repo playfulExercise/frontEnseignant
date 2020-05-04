@@ -36,8 +36,8 @@ class RegisterPage extends Component {
       nom_prof: this.state.nom_prof,
       email_prof: this.state.email_prof.toLowerCase(),
       password: this.state.password,
-      departement: this.state.sloganArtisan,
-      etablissement: this.state.telephoneArtisan,
+      departement: this.state.departement,
+      etablissement: this.state.etablissement,
       eleves: this.state.eleves,
     };
 
@@ -115,6 +115,24 @@ class RegisterPage extends Component {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                 placeholder="Nom de l'etablissement"
                 value={this.state.etablissement}
+                onChange={this.onChange}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-grey-darker text-sm font-bold mb-2"
+                htmlFor="departement"
+              >
+                Numero de departement
+              </label>
+              <input
+                aria-label="departement"
+                name="departement"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+                placeholder="Numero de departement"
+                value={this.state.departement}
                 onChange={this.onChange}
               />
             </div>
