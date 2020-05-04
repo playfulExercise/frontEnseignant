@@ -52,7 +52,6 @@ export const getEleves = (user) => {
       _id: user._id,
     })
     .then((response) => {
-      console.log(response);
       return response.data;
     })
     .catch((err) => {
