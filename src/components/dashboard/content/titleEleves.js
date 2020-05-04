@@ -14,17 +14,17 @@ function TitleEleves() {
         <span className="text-3xl font-bold leading-tight text-gray-900 w-full md:flex md:items-center">
           Gestion des eleves
           <Button
-            onClick={() => setRedirectSubpageEleves("/eleves/add")}
+            onClick={() => setRedirectSubpageEleves("/eleves/all")}
             additionalClass="ml-5 mr-5"
-            setW="w-1/5"
+            setW="w-1/4"
           >
-            Ajouter un eleves
+            Liste des eleves
           </Button>
           <Button
-            onClick={() => setRedirectSubpageEleves("/eleves/all")}
-            setW="w-1/5"
+            onClick={() => setRedirectSubpageEleves("/eleves/add")}
+            setW="w-1/4"
           >
-            Supprimer les eleves selectionnes
+            Ajouter un eleve
           </Button>
         </span>
       </div>

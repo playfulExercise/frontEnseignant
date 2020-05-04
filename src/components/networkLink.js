@@ -46,6 +46,20 @@ export const getProfile = (user) => {
     });
 };
 
+export const getEleves = (user) => {
+  return axios
+    .post("/professeurs/eleves/all", {
+      _id: user._id,
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const addEleves = (newEleves) => {
   return axios
     .post("/professeurs/elevesList", {
