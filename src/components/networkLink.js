@@ -62,7 +62,7 @@ export const getEleves = (user) => {
 export const addEleves = (newEleves) => {
   return axios
     .post("/professeurs/elevesList", {
-      _id: newEleves._id,
+      _id: newEleves.id_prof,
 
       nom_eleve: newEleves.nom_eleve,
       prenom_eleve: newEleves.prenom_eleve,

@@ -65,6 +65,7 @@ class ElevesAffichage extends Component {
                       className="form-checkbox text-md no-underline text-black hover:text-blue-dark ml-2 px-1 bg-gray-700"
                       name={i}
                       // onChange={(e) => this.onChange(e, creation.nomProduit)}
+                      onChange={() => console.log(eleves._id)}
                       value={eleves._id}
                       // checked={
                       //   (this.state.listeCreationsIncluses || {})[creation._id]

@@ -22,7 +22,7 @@ class ElevesAddPage extends Component {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     this.setState({
-      _id: decoded._id,
+      id_prof: decoded._id,
     });
   }
 
@@ -42,7 +42,7 @@ class ElevesAddPage extends Component {
         .toString(36)
         .substring(6)
         .toLowerCase(),
-      _id: this.state._id,
+      id_prof: this.state.id_prof,
     };
     addEleves(newEleve).then((res) => {
       this.setState({
