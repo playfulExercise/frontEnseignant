@@ -7,7 +7,7 @@ class UserChoice extends Component {
       <div>
         <div>
           <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-            Choix
+            Choix d'acces
           </h2>
         </div>
         <div className="mt-6 w-full md:flex md:items-center">

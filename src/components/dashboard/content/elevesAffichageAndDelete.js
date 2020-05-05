@@ -12,6 +12,7 @@ class ElevesAffichage extends Component {
     super();
     this.state = {
       eleves: [],
+      listElevesDelete: [],
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -32,21 +33,17 @@ class ElevesAffichage extends Component {
     getEleves(professeur).then((res) => this.setState({ card: res }));
   }
 
-  onChange(e, eleveID) {
+  onChange(e) {
+    const elevesASupprimer = this.state.listElevesDelete;
     if (e.target.checked) {
+      elevesASupprimer.push(e.target.value);
       this.setState({
-        listElevesDelete: {
-          ...this.state.listElevesDelete,
-          [e.target.value]: eleveID,
-        },
+        listElevesDelete: elevesASupprimer,
       });
     } else {
-      const elevesASupprimer = this.state.listElevesDelete;
-      delete elevesASupprimer[e.target.value];
+      elevesASupprimer.pop(e.target.value);
       this.setState({
-        listElevesDelete: {
-          ...elevesASupprimer,
-        },
+        listElevesDelete: elevesASupprimer,
       });
     }
   }
@@ -65,7 +62,7 @@ class ElevesAffichage extends Component {
 
     return (
       <div>
-        {console.log(this.state)}
+        {console.log(this.state.listElevesDelete)}
         <div className="w-full flex items-center justify-center">
           <div className="w-1/2">
             {(card || []).length ? (
@@ -97,7 +94,7 @@ class ElevesAffichage extends Component {
                       type="checkbox"
                       className="form-checkbox text-md no-underline text-black hover:text-blue-dark ml-2 px-1 bg-gray-700"
                       name={i}
-                      onChange={(e) => this.onChange(e, eleves._id)}
+                      onChange={(e) => this.onChange(e)}
                       value={eleves._id}
                     />
                   </div>
