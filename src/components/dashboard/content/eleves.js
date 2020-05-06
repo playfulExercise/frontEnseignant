@@ -7,6 +7,9 @@ const Eleves = () => {
   return (
     <div>
       <Switch>
+        <Route path="/eleves">
+          <ElevesAffichageAndDelete />
+        </Route>
         <Route path="/eleves/all">
           <ElevesAffichageAndDelete />
         </Route>

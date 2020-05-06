@@ -13,6 +13,7 @@ class ElevesAffichage extends Component {
     this.state = {
       eleves: [],
       listElevesDelete: [],
+      redirect: false,
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -54,7 +55,11 @@ class ElevesAffichage extends Component {
       _id: this.state._id,
       listElevesDelete: this.state.listElevesDelete,
     };
-    delEleves(professeurUpdate).then((res) => <Redirect to="/eleves/add" />);
+    delEleves(professeurUpdate).then(
+      this.setState({
+        redirect: true,
+      })
+    );
   }
 
   render() {
@@ -62,7 +67,7 @@ class ElevesAffichage extends Component {
 
     return (
       <div>
-        {console.log(this.state.listElevesDelete)}
+        {this.state.redirect && <Redirect to="/eleves/add" />}
         <div className="w-full flex items-center justify-center">
           <div className="w-1/2">
             {(card || []).length ? (
@@ -107,16 +112,20 @@ class ElevesAffichage extends Component {
             )}
           </div>
         </div>
-        <div className="w-full flex items-center justify-center">
-          <Button
-            onClick={this.onSubmit}
-            additionalClass="ml-5 mr-5"
-            typeButton
-            setW="w-1/4"
-          >
-            Supprimer les eleves selectionnes
-          </Button>
-        </div>
+        {(card || []).length ? (
+          <div className="w-full flex items-center justify-center">
+            <Button
+              onClick={this.onSubmit}
+              additionalClass="ml-5 mr-5"
+              typeButton
+              setW="w-1/4"
+            >
+              Supprimer les eleves selectionnes
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
