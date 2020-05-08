@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./content/profile";
 import Eleves from "./content/eleves";
+import Monde from "./content/monde";
 
 class Content extends Component {
   render() {
@@ -12,6 +13,7 @@ class Content extends Component {
             {nomcontenu === "dashboard" && <Profile />}
             {nomcontenu === "profile" && <Profile />}
             {nomcontenu === "eleves" && <Eleves />}
+            {nomcontenu === "monde" && <Monde />}
           </div>
         </div>
       </main>
