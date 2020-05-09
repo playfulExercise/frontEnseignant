@@ -92,102 +92,122 @@ export default class Monde extends Component {
 
     return (
       <div>
-        <div className="flex content-start flex-wrap justify-left">
-          <div className="w-1/6 p-2">test</div>
+        <div className="w-1/2 float-left">
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">
+                <p className="text-center font-bold">Monde actuel</p>
+                <p>Nombre de donjons {" " + nb_donjons}</p>
+                <p>Anglais {" " + nb_donjons}</p>
+                <p>Francais {" " + nb_donjons}</p>
+                <p>maths{" " + nb_donjons}</p>
+                <p>histoire {" " + nb_donjons}</p>
+                <p>geographie {" " + nb_donjons}</p>
+                <p>Date de derniere modification (reset) : </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex content-start flex-wrap justify-center">
-          <div className="w-1/6 p-2">
-            <div className="text-left text-2xl">Nombre de donjons</div>
+        <div className="w-1/2 float-right">
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-center text-2xl">
+                <b className="text-center">Nouveau monde</b>
+                <p>Nombre de donjons {" " + nb_donjons}</p>
+              </div>
+            </div>
           </div>
-          <div className="p-2 text-2xl">{nb_donjons}</div>
-        </div>
-        <div className="flex content-start flex-wrap justify-center">
-          <div className="w-1/6 p-2">
-            <div className="text-left text-2xl">Francais</div>
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">Francais</div>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("francais", -1)}>
+                <p className="text-2xl p-1">-</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("francais", 1)}>
+                <p className="text-2xl p-1">+</p>
+              </Button>
+            </div>
+            <div className="p-2 text-2xl">{francais}</div>
           </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("francais", -1)}>
-              <p className="text-2xl p-1">-</p>
-            </Button>
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">Maths</div>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("maths", -1)}>
+                <p className="text-2xl p-1">-</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("maths", 1)}>
+                <p className="text-2xl p-1">+</p>
+              </Button>
+            </div>
+            <div className="p-2 text-2xl">{maths}</div>
           </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("francais", 1)}>
-              <p className="text-2xl p-1">+</p>
-            </Button>
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">Histoire</div>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("histoire", -1)}>
+                <p className="text-2xl p-1">-</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("histoire", 1)}>
+                <p className="text-2xl p-1">+</p>
+              </Button>
+            </div>
+            <div className="p-2 text-2xl">{histoire}</div>
           </div>
-          <div className="p-2 text-2xl">{francais}</div>
-        </div>
-        <div className="flex content-start flex-wrap justify-center">
-          <div className="w-1/6 p-2">
-            <div className="text-left text-2xl">Maths</div>
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">Geographie</div>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("geographie", -1)}>
+                <p className="text-2xl p-1">-</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("geographie", 1)}>
+                <p className="text-2xl p-1">+</p>
+              </Button>
+            </div>
+            <div className="p-2 text-2xl">{geographie}</div>
           </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("maths", -1)}>
-              <p className="text-2xl p-1">-</p>
-            </Button>
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">Anglais</div>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("anglais", -1)}>
+                <p className="text-2xl p-1">-</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("anglais", 1)}>
+                <p className="text-2xl p-1">+</p>
+              </Button>
+            </div>
+            <div className="p-2 text-2xl">{anglais}</div>
           </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("maths", 1)}>
-              <p className="text-2xl p-1">+</p>
-            </Button>
-          </div>
-          <div className="p-2 text-2xl">{maths}</div>
-        </div>
-        <div className="flex content-start flex-wrap justify-center">
-          <div className="w-1/6 p-2">
-            <div className="text-left text-2xl">Histoire</div>
-          </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("histoire", -1)}>
-              <p className="text-2xl p-1">-</p>
-            </Button>
-          </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("histoire", 1)}>
-              <p className="text-2xl p-1">+</p>
-            </Button>
-          </div>
-          <div className="p-2 text-2xl">{histoire}</div>
-        </div>
-        <div className="flex content-start flex-wrap justify-center">
-          <div className="w-1/6 p-2">
-            <div className="text-left text-2xl">Geographie</div>
-          </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("geographie", -1)}>
-              <p className="text-2xl p-1">-</p>
-            </Button>
-          </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("geographie", 1)}>
-              <p className="text-2xl p-1">+</p>
-            </Button>
-          </div>
-          <div className="p-2 text-2xl">{geographie}</div>
-        </div>
-        <div className="flex content-start flex-wrap justify-center">
-          <div className="w-1/6 p-2">
-            <div className="text-left text-2xl">Anglais</div>
-          </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("anglais", -1)}>
-              <p className="text-2xl p-1">-</p>
-            </Button>
-          </div>
-          <div className="p-1">
-            <Button onClick={() => this.onClick("anglais", 1)}>
-              <p className="text-2xl p-1">+</p>
-            </Button>
-          </div>
-          <div className="p-2 text-2xl">{anglais}</div>
-        </div>
-        <div className="flex content-start flex-wrap justify-center mt-5">
-          <div className="w-1/3">
-            <Button>
-              <p className="text-2xl p-1">
-                Enregistrement des reglages du monde
+          <div className="flex content-start flex-wrap justify-center mt-5">
+            <div className="w-1/2">
+              <Button typeButton>
+                <p className="text-2xl p-1">
+                  Enregistrement des reglages du monde
+                </p>
+              </Button>
+              <p className="text-center text-red-700 font-bold">
+                La modification d'un monde entraine la suppression du precedent
               </p>
-            </Button>
+            </div>
           </div>
         </div>
       </div>
