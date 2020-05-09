@@ -113,8 +113,27 @@ export default class Monde extends Component {
             <div className="w-1/2 p-2">
               <div className="text-center text-2xl">
                 <b className="text-center">Nouveau monde</b>
-                <p>Nombre de donjons {" " + nb_donjons}</p>
               </div>
+            </div>
+          </div>
+          <div className="flex content-start flex-wrap justify-center">
+            <div className="w-1/2 p-2">
+              <div className="text-left text-2xl">Nombre de donjons</div>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("francais", -1)}>
+                <p className="text-2xl p-1">3</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("francais", 1)}>
+                <p className="text-2xl p-1">5</p>
+              </Button>
+            </div>
+            <div className="p-1">
+              <Button onClick={() => this.onClick("francais", 1)}>
+                <p className="text-2xl p-1">10</p>
+              </Button>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
