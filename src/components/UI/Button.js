@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Button({
   children,
-  additionalClass,
+  additionalClassName,
   setW,
   typeButton,
   ...buttonProps
@@ -15,7 +15,7 @@ export default function Button({
         !typeButton
           ? "bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
           : "bg-red-800 hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"
-      }  transition duration-150 ease-in-out ${additionalClass}`}
+      }  transition duration-150 ease-in-out ${additionalClassName}`}
       type="button"
       {...buttonProps}
     >

@@ -116,7 +116,7 @@ class ElevesAffichage extends Component {
           <div className="w-full flex items-center justify-center">
             <Button
               onClick={this.onSubmit}
-              additionalClass="ml-5 mr-5"
+              additionalClassName="ml-5 mr-5"
               typeButton
               setW="w-1/4"
             >

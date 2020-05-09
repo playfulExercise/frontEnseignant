@@ -13,12 +13,12 @@ function TitleEleves() {
       <h1 className="text-3xl font-bold leading-tight text-gray-900 p-2">
         Gestion des eleves
       </h1>
-      <div class="w-30 p-2">
+      <div className="w-30 p-2">
         <Button onClick={() => setRedirectSubpageEleves("/eleves/all")}>
           Liste des eleves
         </Button>
       </div>
-      <div class="w-30 p-2">
+      <div className="w-30 p-2">
         <Button onClick={() => setRedirectSubpageEleves("/eleves/add")}>
           Ajouter un eleve
         </Button>
