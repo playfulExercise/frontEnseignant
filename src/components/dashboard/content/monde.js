@@ -28,6 +28,7 @@ export default class Monde extends Component {
   }
   onTest(stateInc, v) {
     const correctState = stateInc + v;
+
     if (correctState < 0) {
       return 0;
     }
@@ -54,25 +55,25 @@ export default class Monde extends Component {
       });
     }
     if (n === "maths") {
-      const stateInc = this.state.nb_donjons;
+      const stateInc = this.state.maths;
       this.setState({
         maths: this.onTest(stateInc, v),
       });
     }
     if (n === "histoire") {
-      const stateInc = this.state.nb_donjons;
+      const stateInc = this.state.histoire;
       this.setState({
         histoire: this.onTest(stateInc, v),
       });
     }
     if (n === "geographie") {
-      const stateInc = this.state.nb_donjons;
+      const stateInc = this.state.geographie;
       this.setState({
         geographie: this.onTest(stateInc, v),
       });
     }
     if (n === "anglais") {
-      const stateInc = this.state.nb_donjons;
+      const stateInc = this.state.anglais;
       this.setState({
         anglais: this.onTest(stateInc, v),
       });
@@ -91,6 +92,9 @@ export default class Monde extends Component {
 
     return (
       <div>
+        <div className="flex content-start flex-wrap justify-left">
+          <div className="w-1/6 p-2">test</div>
+        </div>
         <div className="flex content-start flex-wrap justify-center">
           <div className="w-1/6 p-2">
             <div className="text-left text-2xl">Nombre de donjons</div>
@@ -180,7 +184,9 @@ export default class Monde extends Component {
         <div className="flex content-start flex-wrap justify-center mt-5">
           <div className="w-1/3">
             <Button>
-              <p className="text-2xl p-1">Enregistrer</p>
+              <p className="text-2xl p-1">
+                Enregistrement des reglages du monde
+              </p>
             </Button>
           </div>
         </div>

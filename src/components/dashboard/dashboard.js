@@ -42,7 +42,7 @@ class Dashboard extends Component {
               <Content nomcontenu="eleves" />
             </Route>
             <Route path="/monde">
-              <Title title="Monde" />
+              <Title title="Edition du monde" />
               <Content nomcontenu="monde" />
             </Route>
             <Route path="/profile">
