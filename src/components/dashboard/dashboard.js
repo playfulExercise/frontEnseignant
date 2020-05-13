@@ -34,8 +34,8 @@ class Dashboard extends Component {
         {decoded ? (
           <Switch>
             <Route path="/dashboard">
-              <Title title="Tableau de bord" />
-              <Content nomcontenu="dashboard" />
+              <Title title="Statistiques" />
+              <Content nomcontenu="statistiques" />
             </Route>
             <Route path="/eleves">
               <TitleEleves />
