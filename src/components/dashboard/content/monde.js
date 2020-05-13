@@ -171,16 +171,10 @@ export default class Monde extends Component {
           </div>
           <div className="flex content-start flex-wrap justify-center">
             <div className="w-1/2 p-2">
-              <div className="text-xl">
-                Date de derniere modification (dernier reset) :
-              </div>
+              Date de derniere modification (dernier reset) :
             </div>
-            <div className="p-1">
-              <p className="p-1">
-                <p className="text-2xl p-1">
-                  {this.state.configuration_monde.date_creation_monde}
-                </p>
-              </p>
+            <div className="p-2">
+              {this.state.configuration_monde.date_creation_monde}
             </div>
           </div>
         </div>
@@ -197,17 +191,17 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Nombre de donjons</div>
             </div>
             <div className="p-1">
-              <Button onClick={() => this.onClick("francais", -1)}>
+              <Button onClick={() => this.onClick("nb_donjons", 3)}>
                 <p className="text-2xl p-1">3</p>
               </Button>
             </div>
             <div className="p-1">
-              <Button onClick={() => this.onClick("francais", 1)}>
+              <Button onClick={() => this.onClick("nb_donjons", 5)}>
                 <p className="text-2xl p-1">5</p>
               </Button>
             </div>
             <div className="p-1">
-              <Button onClick={() => this.onClick("francais", 1)}>
+              <Button onClick={() => this.onClick("nb_donjons", 10)}>
                 <p className="text-2xl p-1">10</p>
               </Button>
             </div>
