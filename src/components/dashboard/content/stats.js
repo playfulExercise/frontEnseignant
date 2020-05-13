@@ -17,8 +17,8 @@ class App extends Component {
       { x: 9, y: 0 },
     ];
     return (
-      <div className="App">
-        <XYPlot height={500} width={1300}>
+      <div className="flex content-start flex-wrap justify-center">
+        <XYPlot height={430} width={1100}>
           <XAxis title="Periode de temps (jour)" />
           <YAxis title="Nombre d'eleve ayant joue au jeu" />
           <LineSeries data={data} />

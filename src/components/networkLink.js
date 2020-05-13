@@ -59,6 +59,19 @@ export const getEleves = (user) => {
     });
 };
 
+export const getMonde = (user) => {
+  return axios
+    .post("/professeurs/monde", {
+      _id: user._id,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const addEleves = (newEleves) => {
   return axios
     .post("/professeurs/elevesList", {

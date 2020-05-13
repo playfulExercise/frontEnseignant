@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../UI/Button";
 import jwt_decode from "jwt-decode";
+import { getMonde } from "../../networkLink";
 
 export default class Monde extends Component {
   constructor() {
@@ -12,6 +13,7 @@ export default class Monde extends Component {
       histoire: 0,
       geographie: 0,
       anglais: 0,
+      configuration_monde: {},
       _id: "",
       errors: {},
     };
@@ -25,6 +27,12 @@ export default class Monde extends Component {
     this.setState({
       _id: decoded._id,
     });
+    const professeur = {
+      _id: (decoded || [])._id,
+    };
+    getMonde(professeur).then((res) =>
+      this.setState({ configuration_monde: res })
+    );
   }
   onTest(stateInc, v) {
     const correctState = stateInc + v;
@@ -92,6 +100,7 @@ export default class Monde extends Component {
 
     return (
       <div>
+        {console.log(this.state.configuration_monde)}
         <div className="w-1/2 float-left">
           <div className="flex content-start flex-wrap justify-center">
             <div className="w-1/2 p-2">
@@ -105,7 +114,9 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Nombre de donjons</div>
             </div>
             <div className="p-1">
-              <p className="text-2xl p-1">0</p>
+              <p className="text-2xl p-1">
+                {this.state.configuration_monde.nb_donjons}
+              </p>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -113,7 +124,9 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Francais</div>
             </div>
             <div className="p-1">
-              <p className="text-2xl p-1">0</p>
+              <p className="text-2xl p-1">
+                {this.state.configuration_monde.francais}
+              </p>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -121,7 +134,9 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Maths</div>
             </div>
             <div className="p-1">
-              <p className="text-2xl p-1">0</p>
+              <p className="text-2xl p-1">
+                {this.state.configuration_monde.maths}
+              </p>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -129,7 +144,9 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Histoire</div>
             </div>
             <div className="p-1">
-              <p className="text-2xl p-1">0</p>
+              <p className="text-2xl p-1">
+                {this.state.configuration_monde.histoire}
+              </p>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -137,7 +154,9 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Geographie</div>
             </div>
             <div className="p-1">
-              <p className="text-2xl p-1">0</p>
+              <p className="text-2xl p-1">
+                {this.state.configuration_monde.geographie}
+              </p>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -145,7 +164,9 @@ export default class Monde extends Component {
               <div className="text-left text-2xl">Anglais</div>
             </div>
             <div className="p-1">
-              <p className="text-2xl p-1">0</p>
+              <p className="text-2xl p-1">
+                {this.state.configuration_monde.anglais}
+              </p>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -155,7 +176,11 @@ export default class Monde extends Component {
               </div>
             </div>
             <div className="p-1">
-              <p className="p-1">00/00/0000</p>
+              <p className="p-1">
+                <p className="text-2xl p-1">
+                  {this.state.configuration_monde.date_creation_monde}
+                </p>
+              </p>
             </div>
           </div>
         </div>
