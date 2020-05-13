@@ -7,6 +7,7 @@ export default class Monde extends Component {
   constructor() {
     super();
     this.state = {
+      total_ajout_donjons: 0,
       nb_donjons: 0,
       francais: 0,
       maths: 0,
@@ -44,7 +45,7 @@ export default class Monde extends Component {
       return 5;
     }
     this.setState({
-      nb_donjons:
+      total_ajout_donjons:
         this.state.francais +
         this.state.maths +
         this.state.histoire +
@@ -55,6 +56,18 @@ export default class Monde extends Component {
   }
 
   onClick(n, v) {
+    if (n === "nb_donjons") {
+      this.setState({
+        nb_donjons: v,
+        total_ajout_donjons: 0,
+        reste_ajout: 0,
+        francais: 0,
+        maths: 0,
+        histoire: 0,
+        geographie: 0,
+        anglais: 0,
+      });
+    }
     if (n === "francais") {
       const stateInc = this.state.francais;
 
@@ -90,6 +103,7 @@ export default class Monde extends Component {
 
   render() {
     const {
+      total_ajout_donjons,
       nb_donjons,
       francais,
       maths,
@@ -97,10 +111,10 @@ export default class Monde extends Component {
       geographie,
       anglais,
     } = this.state;
+    const reste_ajout = nb_donjons - total_ajout_donjons;
 
     return (
       <div>
-        {console.log(this.state.configuration_monde)}
         <div className="w-1/2 float-left">
           <div className="flex content-start flex-wrap justify-center">
             <div className="w-1/2 p-2">
@@ -184,6 +198,17 @@ export default class Monde extends Component {
               <div className="text-center text-2xl">
                 <b className="text-center">Nouveau monde</b>
               </div>
+              <div className="text-center">
+                {reste_ajout > 0 && (
+                  <b className="text-center ">
+                    {"Il faut encore ajouter "}
+                    <span className="text-red-600 text-2xl">
+                      {reste_ajout + " "}
+                    </span>
+                    monde pour pouvoir valider la creation
+                  </b>
+                )}
+              </div>
             </div>
           </div>
           <div className="flex content-start flex-wrap justify-center">
@@ -206,89 +231,95 @@ export default class Monde extends Component {
               </Button>
             </div>
           </div>
-          <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
-              <div className="text-left text-2xl">Francais</div>
+          {reste_ajout > 0 && (
+            <div>
+              <div className="flex content-start flex-wrap justify-center">
+                <div className="w-1/2 p-2">
+                  <div className="text-left text-2xl">Francais</div>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("francais", -1)}>
+                    <p className="text-2xl p-1">-</p>
+                  </Button>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("francais", 1)}>
+                    <p className="text-2xl p-1">+</p>
+                  </Button>
+                </div>
+                <div className="p-2 text-2xl">{francais}</div>
+              </div>
+              <div className="flex content-start flex-wrap justify-center">
+                <div className="w-1/2 p-2">
+                  <div className="text-left text-2xl">Maths</div>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("maths", -1)}>
+                    <p className="text-2xl p-1">-</p>
+                  </Button>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("maths", 1)}>
+                    <p className="text-2xl p-1">+</p>
+                  </Button>
+                </div>
+                <div className="p-2 text-2xl">{maths}</div>
+              </div>
+              <div className="flex content-start flex-wrap justify-center">
+                <div className="w-1/2 p-2">
+                  <div className="text-left text-2xl">Histoire</div>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("histoire", -1)}>
+                    <p className="text-2xl p-1">-</p>
+                  </Button>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("histoire", 1)}>
+                    <p className="text-2xl p-1">+</p>
+                  </Button>
+                </div>
+                <div className="p-2 text-2xl">{histoire}</div>
+              </div>
+              <div className="flex content-start flex-wrap justify-center">
+                <div className="w-1/2 p-2">
+                  <div className="text-left text-2xl">Geographie</div>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("geographie", -1)}>
+                    <p className="text-2xl p-1">-</p>
+                  </Button>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("geographie", 1)}>
+                    <p className="text-2xl p-1">+</p>
+                  </Button>
+                </div>
+                <div className="p-2 text-2xl">{geographie}</div>
+              </div>
+              <div className="flex content-start flex-wrap justify-center">
+                <div className="w-1/2 p-2">
+                  <div className="text-left text-2xl">Anglais</div>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("anglais", -1)}>
+                    <p className="text-2xl p-1">-</p>
+                  </Button>
+                </div>
+                <div className="p-1">
+                  <Button onClick={() => this.onClick("anglais", 1)}>
+                    <p className="text-2xl p-1">+</p>
+                  </Button>
+                </div>
+                <div className="p-2 text-2xl">{anglais}</div>
+              </div>
             </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("francais", -1)}>
-                <p className="text-2xl p-1">-</p>
-              </Button>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("francais", 1)}>
-                <p className="text-2xl p-1">+</p>
-              </Button>
-            </div>
-            <div className="p-2 text-2xl">{francais}</div>
-          </div>
-          <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
-              <div className="text-left text-2xl">Maths</div>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("maths", -1)}>
-                <p className="text-2xl p-1">-</p>
-              </Button>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("maths", 1)}>
-                <p className="text-2xl p-1">+</p>
-              </Button>
-            </div>
-            <div className="p-2 text-2xl">{maths}</div>
-          </div>
-          <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
-              <div className="text-left text-2xl">Histoire</div>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("histoire", -1)}>
-                <p className="text-2xl p-1">-</p>
-              </Button>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("histoire", 1)}>
-                <p className="text-2xl p-1">+</p>
-              </Button>
-            </div>
-            <div className="p-2 text-2xl">{histoire}</div>
-          </div>
-          <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
-              <div className="text-left text-2xl">Geographie</div>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("geographie", -1)}>
-                <p className="text-2xl p-1">-</p>
-              </Button>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("geographie", 1)}>
-                <p className="text-2xl p-1">+</p>
-              </Button>
-            </div>
-            <div className="p-2 text-2xl">{geographie}</div>
-          </div>
-          <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
-              <div className="text-left text-2xl">Anglais</div>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("anglais", -1)}>
-                <p className="text-2xl p-1">-</p>
-              </Button>
-            </div>
-            <div className="p-1">
-              <Button onClick={() => this.onClick("anglais", 1)}>
-                <p className="text-2xl p-1">+</p>
-              </Button>
-            </div>
-            <div className="p-2 text-2xl">{anglais}</div>
-          </div>
+          )}
           <div className="flex content-start flex-wrap justify-center mt-5">
             <div className="w-1/2">
-              <Button typeButton>
+              <Button
+                typeButton={!(reste_ajout === 0 && total_ajout_donjons >= 3)}
+              >
                 <p className="text-2xl p-1">
                   Enregistrement des reglages du monde
                 </p>
