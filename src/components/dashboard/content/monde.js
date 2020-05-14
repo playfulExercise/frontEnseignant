@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Button from "../../UI/Button";
 import jwt_decode from "jwt-decode";
-import { getMonde } from "../../networkLink";
+import { getMonde, setMonde } from "../../networkLink";
 
 export default class Monde extends Component {
   constructor() {
     super();
     this.state = {
-      total_ajout_donjons: 0,
       nb_donjons: 0,
       francais: 0,
       maths: 0,
@@ -16,10 +15,11 @@ export default class Monde extends Component {
       anglais: 0,
       configuration_monde: {},
       _id: "",
+      notifUpdate: false,
       errors: {},
     };
     this.onClick = this.onClick.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +35,7 @@ export default class Monde extends Component {
       this.setState({ configuration_monde: res })
     );
   }
+
   onTest(stateInc, v) {
     const correctState = stateInc + v;
 
@@ -44,14 +45,6 @@ export default class Monde extends Component {
     if (correctState > 5) {
       return 5;
     }
-    this.setState({
-      total_ajout_donjons:
-        this.state.francais +
-        this.state.maths +
-        this.state.histoire +
-        this.state.geographie +
-        this.state.anglais,
-    });
     return correctState;
   }
 
@@ -59,7 +52,6 @@ export default class Monde extends Component {
     if (n === "nb_donjons") {
       this.setState({
         nb_donjons: v,
-        total_ajout_donjons: 0,
         reste_ajout: 0,
         francais: 0,
         maths: 0,
@@ -101,23 +93,59 @@ export default class Monde extends Component {
     }
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+    const date_actuelle = new Date();
+
+    const newConfigurationMonde = {
+      nb_donjons: this.state.nb_donjons,
+      francais: this.state.francais,
+      maths: this.state.maths,
+      histoire: this.state.histoire,
+      geographie: this.state.geographie,
+      anglais: this.state.anglais,
+      date_creation_monde: date_actuelle.toISOString(),
+    };
+
+    const user = {
+      _id: this.state._id,
+      configuration_monde: newConfigurationMonde,
+    };
+    setMonde(user).then((res) => {
+      this.setState({
+        configuration_monde: newConfigurationMonde,
+        nb_donjons: 0,
+        francais: 0,
+        maths: 0,
+        histoire: 0,
+        geographie: 0,
+        anglais: 0,
+        notifUpdate: true,
+      });
+    });
+  }
+
   render() {
     const {
-      total_ajout_donjons,
       nb_donjons,
       francais,
       maths,
       histoire,
       geographie,
       anglais,
+      notifUpdate,
     } = this.state;
+
+    const total_ajout_donjons =
+      francais + maths + histoire + geographie + anglais;
+
     const reste_ajout = nb_donjons - total_ajout_donjons;
 
     return (
       <div>
         <div className="w-1/2 float-left">
           <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
+            <div className="w-1/2 p-1">
               <div className="text-left text-2xl">
                 <p className="text-center font-bold">Monde actuel</p>
               </div>
@@ -188,24 +216,33 @@ export default class Monde extends Component {
               Date de derniere modification (dernier reset) :
             </div>
             <div className="p-2">
-              {this.state.configuration_monde.date_creation_monde}
+              {
+                (
+                  this.state.configuration_monde.date_creation_monde || ""
+                ).split("T")[0]
+              }
             </div>
           </div>
         </div>
         <div className="w-1/2 float-right">
           <div className="flex content-start flex-wrap justify-center">
-            <div className="w-1/2 p-2">
+            <div className="w-1/2 p-1">
               <div className="text-center text-2xl">
                 <b className="text-center">Nouveau monde</b>
               </div>
+              {notifUpdate && (
+                <p className="text-center text-2xl text-teal-700 font-bold">
+                  Le monde a ete mis a jour avec succes !
+                </p>
+              )}
               <div className="text-center">
-                {reste_ajout > 0 && (
+                {(reste_ajout > 0 || nb_donjons === 0) && (
                   <b className="text-center ">
                     {"Il faut encore ajouter "}
                     <span className="text-red-600 text-2xl">
-                      {reste_ajout + " "}
+                      {nb_donjons === 0 ? "plusieurs " : reste_ajout + " "}
                     </span>
-                    monde pour pouvoir valider la creation
+                    donjons pour pouvoir mettre a jour le monde
                   </b>
                 )}
               </div>
@@ -319,9 +356,16 @@ export default class Monde extends Component {
             <div className="w-1/2">
               <Button
                 typeButton={!(reste_ajout === 0 && total_ajout_donjons >= 3)}
+                onClick={
+                  reste_ajout === 0 && total_ajout_donjons >= 3
+                    ? this.onSubmit
+                    : () => null
+                }
               >
                 <p className="text-2xl p-1">
-                  Enregistrement des reglages du monde
+                  {reste_ajout === 0 && total_ajout_donjons >= 3
+                    ? "Vous pouvez enregistrer la modification du monde"
+                    : "Enregistrement des reglages du monde"}
                 </p>
               </Button>
               <p className="text-center text-red-700 font-bold">

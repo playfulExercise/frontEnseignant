@@ -72,6 +72,17 @@ export const getMonde = (user) => {
     });
 };
 
+export const setMonde = (user) => {
+  return axios
+    .post("professeurs/monde/set", {
+      _id: user._id,
+      configuration_monde: user.configuration_monde,
+    })
+    .then((response) => {
+      console.log("Monde mis a jour");
+    });
+};
+
 export const addEleves = (newEleves) => {
   return axios
     .post("/professeurs/elevesList", {
