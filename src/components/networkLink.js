@@ -78,7 +78,7 @@ export const setMonde = (user) => {
       _id: user._id,
       configuration_monde: user.configuration_monde,
     })
-    .then((response) => {
+    .then((res) => {
       console.log("Monde mis a jour");
     });
 };
@@ -91,6 +91,7 @@ export const addEleves = (newEleves) => {
       nom_eleve: newEleves.nom_eleve,
       prenom_eleve: newEleves.prenom_eleve,
       code_eleve: newEleves.code_eleve,
+      infos: newEleves.infos,
     })
     .then((response) => {
       return response.data;
@@ -109,6 +110,17 @@ export const delEleves = (user) => {
     })
     .then((response) => {
       console.log("Eleve(s) deleted");
+    });
+};
+
+export const setInfosEleves = (user) => {
+  return axios
+    .post("professeurs/monde/setInfos", {
+      _id: user._id,
+      infos: user.infos,
+    })
+    .then((res) => {
+      console.log("Infos des eleves set ok");
     });
 };
 

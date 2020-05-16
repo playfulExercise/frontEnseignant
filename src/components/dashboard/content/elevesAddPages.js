@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../UI/Button";
 import { Redirect } from "react-router-dom";
-import { addEleves } from "../../networkLink";
+import { addEleves, getMonde } from "../../networkLink";
 import jwt_decode from "jwt-decode";
 
 class ElevesAddPage extends Component {
@@ -13,6 +13,37 @@ class ElevesAddPage extends Component {
       _id: "",
       errors: {},
       redirectLogin: false,
+      infos: {
+        progression_monde: 0,
+        nb_pieces: 0,
+        matieres: [
+          {
+            nom_matiere: "francais",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "maths",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "histoire",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "geographie",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "anglais",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+        ],
+      },
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,6 +55,12 @@ class ElevesAddPage extends Component {
     this.setState({
       id_prof: decoded._id,
     });
+    const professeur = {
+      _id: (decoded || [])._id,
+    };
+    getMonde(professeur).then((res) =>
+      this.setState({ configuration_monde: res })
+    );
   }
 
   onChange(e) {
@@ -34,7 +71,29 @@ class ElevesAddPage extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    this.state.infos.matieres.map((x) => {
+      if (x.nom_matiere === "francais") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = this.state.configuration_monde.francais;
+      }
+      if (x.nom_matiere === "maths") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = this.state.configuration_monde.maths;
+      }
+      if (x.nom_matiere === "histoire") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = this.state.configuration_monde.histoire;
+      }
+      if (x.nom_matiere === "geographie") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = this.state.configuration_monde.geographie;
+      }
+      if (x.nom_matiere === "anglais") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = this.state.configuration_monde.anglais;
+      }
+      return x;
+    });
     const newEleve = {
       nom_eleve: this.state.nom_eleve,
       prenom_eleve: this.state.prenom_eleve,
@@ -43,6 +102,7 @@ class ElevesAddPage extends Component {
         .substring(6)
         .toLowerCase(),
       id_prof: this.state.id_prof,
+      infos: this.state.infos,
     };
     addEleves(newEleve).then((res) => {
       this.setState({

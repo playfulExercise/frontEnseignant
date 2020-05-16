@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../UI/Button";
 import jwt_decode from "jwt-decode";
-import { getMonde, setMonde } from "../../networkLink";
+import { getMonde, setMonde, setInfosEleves } from "../../networkLink";
 
 export default class Monde extends Component {
   constructor() {
@@ -14,6 +14,37 @@ export default class Monde extends Component {
       geographie: 0,
       anglais: 0,
       configuration_monde: {},
+      infos: {
+        progression_monde: 0,
+        nb_pieces: 0,
+        matieres: [
+          {
+            nom_matiere: "francais",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "maths",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "histoire",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "geographie",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+          {
+            nom_matiere: "anglais",
+            nb_donjons: 0,
+            nb_donjons_finis: 0,
+          },
+        ],
+      },
       _id: "",
       notifUpdate: false,
       errors: {},
@@ -106,11 +137,35 @@ export default class Monde extends Component {
       anglais: this.state.anglais,
       date_creation_monde: date_actuelle.toISOString(),
     };
-
+    this.state.infos.matieres.map((x) => {
+      if (x.nom_matiere === "francais") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = newConfigurationMonde.francais;
+      }
+      if (x.nom_matiere === "maths") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = newConfigurationMonde.maths;
+      }
+      if (x.nom_matiere === "histoire") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = newConfigurationMonde.histoire;
+      }
+      if (x.nom_matiere === "geographie") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = newConfigurationMonde.geographie;
+      }
+      if (x.nom_matiere === "anglais") {
+        x.nb_donjons_finis = 0;
+        x.nb_donjons = newConfigurationMonde.anglais;
+      }
+      return x;
+    });
     const user = {
       _id: this.state._id,
       configuration_monde: newConfigurationMonde,
+      infos: this.state.infos,
     };
+
     setMonde(user).then((res) => {
       this.setState({
         configuration_monde: newConfigurationMonde,
@@ -121,6 +176,41 @@ export default class Monde extends Component {
         geographie: 0,
         anglais: 0,
         notifUpdate: true,
+      });
+    });
+    setInfosEleves(user).then((res) => {
+      this.setState({
+        infos: {
+          progression_monde: 0,
+          nb_pieces: 0,
+          matieres: [
+            {
+              nom_matiere: "francais",
+              nb_donjons: 0,
+              nb_donjons_finis: 0,
+            },
+            {
+              nom_matiere: "maths",
+              nb_donjons: 0,
+              nb_donjons_finis: 0,
+            },
+            {
+              nom_matiere: "histoire",
+              nb_donjons: 0,
+              nb_donjons_finis: 0,
+            },
+            {
+              nom_matiere: "geographie",
+              nb_donjons: 0,
+              nb_donjons_finis: 0,
+            },
+            {
+              nom_matiere: "anglais",
+              nb_donjons: 0,
+              nb_donjons_finis: 0,
+            },
+          ],
+        },
       });
     });
   }
@@ -140,7 +230,6 @@ export default class Monde extends Component {
       francais + maths + histoire + geographie + anglais;
 
     const reste_ajout = nb_donjons - total_ajout_donjons;
-
     return (
       <div>
         <div className="w-1/2 float-left">
