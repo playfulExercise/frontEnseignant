@@ -94,6 +94,7 @@ class ElevesAddPage extends Component {
       }
       return x;
     });
+
     const newEleve = {
       nom_eleve: this.state.nom_eleve,
       prenom_eleve: this.state.prenom_eleve,

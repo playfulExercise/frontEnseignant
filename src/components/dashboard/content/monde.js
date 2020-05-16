@@ -13,6 +13,7 @@ export default class Monde extends Component {
       histoire: 0,
       geographie: 0,
       anglais: 0,
+      res_infos: {}, //facultatif
       configuration_monde: {},
       infos: {
         progression_monde: 0,
@@ -180,37 +181,7 @@ export default class Monde extends Component {
     });
     setInfosEleves(user).then((res) => {
       this.setState({
-        infos: {
-          progression_monde: 0,
-          nb_pieces: 0,
-          matieres: [
-            {
-              nom_matiere: "francais",
-              nb_donjons: 0,
-              nb_donjons_finis: 0,
-            },
-            {
-              nom_matiere: "maths",
-              nb_donjons: 0,
-              nb_donjons_finis: 0,
-            },
-            {
-              nom_matiere: "histoire",
-              nb_donjons: 0,
-              nb_donjons_finis: 0,
-            },
-            {
-              nom_matiere: "geographie",
-              nb_donjons: 0,
-              nb_donjons_finis: 0,
-            },
-            {
-              nom_matiere: "anglais",
-              nb_donjons: 0,
-              nb_donjons_finis: 0,
-            },
-          ],
-        },
+        res_infos: res,
       });
     });
   }
