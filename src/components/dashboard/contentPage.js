@@ -11,7 +11,7 @@ class Content extends Component {
       <main>
         <div className="max-w-7xl mx-auto py-2 sm:px-2 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
-            {nomcontenu === "statistiques" && <Stats />}
+            {nomcontenu === "progression" && <Stats />}
             {nomcontenu === "profile" && <Profile />}
             {nomcontenu === "eleves" && <Eleves />}
             {nomcontenu === "monde" && <Monde />}
