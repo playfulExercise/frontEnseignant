@@ -44,7 +44,7 @@ class ElevesAffichage extends Component {
     const { matieres } = infos || {};
 
     return (
-      <div className="mx-auto ml-5 mr-5">
+      <div>
         <div className="text-center mt-10">
           <FontAwesomeIcon icon={faUserCircle} size="5x" color="#cbd5e0" />
           <h1 className="text-3xl text-center font-thick">
@@ -52,13 +52,50 @@ class ElevesAffichage extends Component {
           </h1>
         </div>
         <div className="flex flex-row flex-wrap -mx-2 mt-6">
-          <div className="w-full md:w-1/2 h-64 md:h-auto mb-4 px-2 text-center">
-            <h1 className="text-2xl text-center font-thick">
-              <div className="mb-5">
+          <div className="w-full md:w-1/2 mb-4 px-2 text-center">
+            <div className="mb-5">
+              <div className="flex content-start flex-wrap justify-center">
+                <div className="w-1/2 p-1">
+                  <div className="text-left text-2xl">
+                    <p className="text-center font-bold">Infos eleves</p>
+                  </div>
+                </div>
+              </div>
+              <div className="w-1/2 float-left">
+                <div className="flex content-start flex-wrap justify-center">
+                  <div className="p-1">
+                    <div className="text-left text-2xl">
+                      <span className="text-center font-bold">Nom : </span>
+                      <span className="text-center">
+                        {" " + (data_eleve || {}).nom_eleve}
+                      </span>
+                    </div>
+                    <div className="text-left text-2xl">
+                      <span className="text-center font-bold">Prenom : </span>
+                      <span className="text-center">
+                        {" " + (data_eleve || {}).prenom_eleve}
+                      </span>
+                    </div>
+                    <div className="text-left text-2xl">
+                      <span className="text-center font-bold">
+                        Cle d'acces au jeu :{" "}
+                      </span>
+                      <span className="text-center">
+                        {" " + (data_eleve || {}).code_eleve}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 mb-4 px-2">
+            <div className="flex flex-col sm:flex-row md:flex-col -mx-2">
+              <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 mb-4 sm:mb-0 md:mb-4 px-2">
                 <div className="flex content-start flex-wrap justify-center">
                   <div className="w-1/2 p-1">
                     <div className="text-left text-2xl">
-                      <p className="text-center font-bold">Infos eleves</p>
+                      <p className="text-center font-bold">Progression</p>
                     </div>
                   </div>
                 </div>
@@ -66,88 +103,47 @@ class ElevesAffichage extends Component {
                   <div className="flex content-start flex-wrap justify-center">
                     <div className="p-1">
                       <div className="text-left text-2xl">
-                        <span className="text-center font-bold">Nom : </span>
-                        <span className="text-center">
-                          {" " + (data_eleve || {}).nom_eleve}
+                        <span className="text-center font-bold">
+                          Progression generale :{" "}
                         </span>
-                      </div>
-                      <div className="text-left text-2xl">
-                        <span className="text-center font-bold">Prenom : </span>
                         <span className="text-center">
-                          {" " + (data_eleve || {}).prenom_eleve}
+                          {" " + (infos || {}).progression_monde}
                         </span>
                       </div>
                       <div className="text-left text-2xl">
                         <span className="text-center font-bold">
-                          Cle d'acces au jeu :{" "}
+                          Progression par matieres :
                         </span>
-                        <span className="text-center">
-                          {" " + (data_eleve || {}).code_eleve}
-                        </span>
+                      </div>
+                      <div className="text-left text-xl">
+                        {(matieres || []).map((matiere, i) => (
+                          <div key={i}>
+                            <span className="text-center">
+                              Progression {" " + (matiere || {}).nom_matiere}
+                              {": "}
+                            </span>
+                            <span className="text-right">
+                              {(matiere || {}).nb_donjons === 0 ||
+                              (matiere || {}).nb_donjons_finis === 0 ||
+                              !(matiere || {}).nb_donjons_finis ||
+                              !(matiere || {}).nb_donjons
+                                ? 0
+                                : Math.round(
+                                    ((matiere || {}).nb_donjons_finis /
+                                      (matiere || {}).nb_donjons) *
+                                      100
+                                  )}
+                              {" % - " +
+                                (matiere || {}).nb_donjons_finis +
+                                " / " +
+                                (matiere || {}).nb_donjons}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </h1>
-          </div>
-          <div className="w-full md:w-1/2 mb-4 px-2">
-            <div className="flex flex-col sm:flex-row md:flex-col -mx-2">
-              <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 mb-4 sm:mb-0 md:mb-4 px-2">
-                <h1 className="text-2xl text-center font-thick">
-                  <div className="flex content-start flex-wrap justify-center">
-                    <div className="w-1/2 p-1">
-                      <div className="text-left text-2xl">
-                        <p className="text-center font-bold">Progression</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-1/2 float-left">
-                    <div className="flex content-start flex-wrap justify-center">
-                      <div className="p-1">
-                        <div className="text-left text-2xl">
-                          <span className="text-center font-bold">
-                            Progression generale :{" "}
-                          </span>
-                          <span className="text-center">
-                            {" " + (infos || {}).progression_monde}
-                          </span>
-                        </div>
-                        <div className="text-left text-2xl">
-                          <span className="text-center font-bold">
-                            Progression par matieres :
-                          </span>
-                        </div>
-                        <div className="text-left text-xl">
-                          {(matieres || []).map((matiere, i) => (
-                            <div key={i}>
-                              <span className="text-center">
-                                Progression {" " + (matiere || {}).nom_matiere}
-                                {": "}
-                              </span>
-                              <span className="text-right">
-                                {(matiere || {}).nb_donjons === 0 ||
-                                (matiere || {}).nb_donjons_finis === 0 ||
-                                !(matiere || {}).nb_donjons_finis ||
-                                !(matiere || {}).nb_donjons
-                                  ? 0
-                                  : Math.round(
-                                      ((matiere || {}).nb_donjons_finis /
-                                        (matiere || {}).nb_donjons) *
-                                        100
-                                    )}
-                                {" % - " +
-                                  (matiere || {}).nb_donjons_finis +
-                                  " / " +
-                                  (matiere || {}).nb_donjons}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </h1>
               </div>
               <div className="w-full sm:w-1/2 md:w-full h-48 xl:h-64 px-2"></div>
             </div>
