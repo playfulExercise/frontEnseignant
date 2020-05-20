@@ -124,13 +124,14 @@ export const setInfosEleves = (user) => {
     });
 };
 
-/*
-export const getCreation = (user) => {
+export const getEleveSpecifique = (user) => {
   return axios
-    .post("users/creations", {
-      emailArtisan: user.emailArtisan,
+    .post("/professeurs/eleveSpecifique", {
+      _id: user._id,
+      eleves_id: user.eleves_id,
     })
     .then((response) => {
+      console.log(response);
       return response.data;
     })
     .catch((err) => {
@@ -138,14 +139,13 @@ export const getCreation = (user) => {
     });
 };
 
-export const getCreationSpecifique = (user) => {
+/*
+export const getCreation = (user) => {
   return axios
-    .post("/users/creationSpecifique", {
+    .post("users/creations", {
       emailArtisan: user.emailArtisan,
-      creationId: user.creationId,
     })
     .then((response) => {
-      console.log(response);
       return response.data;
     })
     .catch((err) => {
