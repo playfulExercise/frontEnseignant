@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserCircle,
+  faExternalLinkSquareAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getEleves, delEleves } from "../../networkLink";
 import Button from "../../UI/Button";
@@ -77,6 +80,16 @@ class ElevesAffichage extends Component {
                   className="font-sans flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline mb-3 overflow-hidden rounded-lg shadow-lg"
                 >
                   <div className="mb-2 sm:mb-0 flex flex-row">
+                    <Link
+                      to={"/eleves/" + eleves._id}
+                      className="h-10 w-10 self-center mr-5"
+                    >
+                      <FontAwesomeIcon
+                        icon={faExternalLinkSquareAlt}
+                        size="3x"
+                        className="text-indigo-600"
+                      />
+                    </Link>
                     <div className="h-10 w-10 self-center mr-5">
                       <FontAwesomeIcon
                         icon={faUserCircle}
@@ -93,7 +106,6 @@ class ElevesAffichage extends Component {
                       </p>
                     </div>
                   </div>
-
                   <div className="sm:mb-0 self-center">
                     <input
                       type="checkbox"

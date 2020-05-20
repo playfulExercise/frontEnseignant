@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import ElevesAddPages from "./elevesAddPages";
 import ElevesAffichageAndDelete from "./elevesAffichageAndDelete";
+import ElevesProfile from "./elevesProfile";
 
 const Eleves = () => {
   return (
@@ -12,6 +13,9 @@ const Eleves = () => {
         </Route>
         <Route path="/eleves/add">
           <ElevesAddPages />
+        </Route>
+        <Route path="/eleves/:id">
+          <ElevesProfile />
         </Route>
       </Switch>
     </div>
