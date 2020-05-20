@@ -41,6 +41,8 @@ class ElevesAffichage extends Component {
   render() {
     const { data_eleve } = this.state;
     const { infos } = data_eleve || {};
+    const { matieres } = infos || {};
+
     return (
       <div className="mx-auto ml-5 mr-5">
         <div className="text-center mt-10">
@@ -113,9 +115,34 @@ class ElevesAffichage extends Component {
                         </div>
                         <div className="text-left text-2xl">
                           <span className="text-center font-bold">
-                            Progression matiere :
+                            Progression par matieres :
                           </span>
-                          <span className="text-center">{" " + " %"}</span>
+                        </div>
+                        <div className="text-left text-xl">
+                          {(matieres || []).map((matiere, i) => (
+                            <div key={i}>
+                              <span className="text-center">
+                                Progression {" " + (matiere || {}).nom_matiere}
+                                {": "}
+                              </span>
+                              <span className="text-right">
+                                {(matiere || {}).nb_donjons === 0 ||
+                                (matiere || {}).nb_donjons_finis === 0 ||
+                                !(matiere || {}).nb_donjons_finis ||
+                                !(matiere || {}).nb_donjons
+                                  ? 0
+                                  : Math.round(
+                                      ((matiere || {}).nb_donjons_finis /
+                                        (matiere || {}).nb_donjons) *
+                                        100
+                                    )}
+                                {" % - " +
+                                  (matiere || {}).nb_donjons_finis +
+                                  " / " +
+                                  (matiere || {}).nb_donjons}
+                              </span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
