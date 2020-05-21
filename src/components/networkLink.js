@@ -132,7 +132,6 @@ export const getEleveSpecifique = (user) => {
       eleves_id: user.eleves_id,
     })
     .then((response) => {
-      console.log(response);
       return response.data;
     })
     .catch((err) => {
