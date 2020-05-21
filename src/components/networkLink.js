@@ -11,6 +11,7 @@ export const register = (newProf) => {
       departement: newProf.departement,
       etablissement: newProf.etablissement,
       eleves: newProf.eleves,
+      questions: newProf.questions,
     })
     .then((res) => {
       console.log("Registered");
